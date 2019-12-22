@@ -1,0 +1,44 @@
+[
+    { "category": "sans-serif", "family": "sans-serif", "kind": "device font" },
+    { "category": "sans-serif", "family": "Arial", "kind": "device font" },
+    { "category": "sans-serif", "family": "Arial Black", "kind": "device font" },
+    { "category": "sans-serif", "family": "Arial Narrow", "kind": "device font" },
+    { "category": "sans-serif", "family": "Verdana", "kind": "device font" },
+    { "category": "sans-serif", "family": "Trebuchet MS", "kind": "device font" },
+    { "category": "sans-serif", "family": "Gill Sans", "kind": "device font" },
+    { "category": "sans-serif", "family": "Optima", "kind": "device font" },
+
+    { "category": "serif", "family": "serif", "kind": "device font" },
+    { "category": "serif", "family": "Times", "kind": "device font" },
+    { "category": "serif", "family": "Didot", "kind": "device font" },
+    { "category": "serif", "family": "Georgia", "kind": "device font" },
+    { "category": "serif", "family": "Palatino", "kind": "device font" },
+    { "category": "serif", "family": "Bookman", "kind": "device font" },
+    { "category": "serif", "family": "American Typewriter", "kind": "device font" },
+
+    { "category": "monospace", "family": "monospace", "kind": "device font" },
+    { "category": "monospace", "family": "Andale Mono", "kind": "device font" },
+    { "category": "monospace", "family": "Courier New", "kind": "device font" },
+    { "category": "monospace", "family": "Courier", "kind": "device font" },
+    { "category": "monospace", "family": "FreeMono", "kind": "device font" },
+
+    { "category": "cursive", "family": "cursive", "kind": "device font" },
+    { "category": "cursive", "family": "Comic Sans MS", "kind": "device font" },
+    { "category": "cursive", "family": "Bradley Hand", "kind": "device font" },
+    { "category": "cursive", "family": "Brush Script MT", "kind": "device font" },
+    { "category": "cursive", "family": "Snell Roundhand", "kind": "device font" },
+
+    { "category": "fantasy", "family": "fantasy", "kind": "device font" },
+    { "category": "fantasy", "family": "Impact", "kind": "device font" },
+    { "category": "fantasy", "family": "Luminari", "kind": "device font" },
+    { "category": "fantasy", "family": "Chalkduster", "kind": "device font" },
+    { "category": "fantasy", "family": "Marker Felt", "kind": "device font" },
+    { "category": "fantasy", "family": "Trattatello", "kind": "device font" },
+
+    { "category": "japanese", "family": "'Meiryo', 'メイリオ'", "kind": "device font" },
+    { "category": "japanese", "family": "'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3'", "kind": "device font" },
+    { "category": "japanese", "family": "'Hiragino Maru Gothic Pro', 'ヒラギノ丸ゴ Pro W3'", "kind": "device font" },
+    { "category": "japanese", "family": "'Hiragino Mincho Pro', 'ヒラギノ明朝 Pro W3'", "kind": "device font" },
+    { "category": "japanese", "family": "'YuGothic', '游ゴシック体'", "kind": "device font" },
+    { "category": "japanese", "family": "'YuMincho', '游明朝体'" }
+]

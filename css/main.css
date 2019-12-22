@@ -1,0 +1,115 @@
+/*
+* font showcase with zoom and pan
+* copyright 2019 tanakazuhiko
+* powered by d3.js
+*/
+body {
+    background-color: #36464D;
+    overflow: hidden;
+}
+
+g.tick line {
+    stroke: #c5bfbf;
+    stroke-width:0.5;
+}
+
+g.tick text {
+    opacity: 0;
+    cursor: default;
+}
+
+.svg {
+    position: absolute;
+    top: 0;
+    left: 39px;
+    background-color: #FFFFFF;
+}
+
+path.domain {
+    stroke: white;
+}
+
+.type {
+    font-style: "Arial";
+    font-size: 60pt;
+    fill: #2047c2;
+    text-anchor: end;
+    cursor: default;
+}
+
+.g_family {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.family {
+    font-size: 32pt;
+    fill: #413939;
+    text-anchor: end;
+}
+
+.sample {
+    font-size: 32pt;
+    fill: #222;
+}
+
+.grabbable {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.grabbable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* tab */
+.tab-wrap {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.tab-label {
+    width: 20px;
+    color: Gray;
+    background: LightGray;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
+    margin: 2px -1px 0px 1px;
+    padding: 5px .5em;
+    order: -1;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    float:left;
+    border-left: 6px solid #80929B;
+}
+
+.tab-content {
+    display:none;
+}
+
+.tab-switch:checked+.tab-label {
+    color: Gray;
+    background: #FFFFFF;
+    border-left: 6px solid #4FC1CE;
+}
+
+.tab-switch:checked+.tab-label+.tab-content {
+    width: calc(100% - 150px);
+    height: 100%;
+    padding: 15px;
+    border-left: 1px solid Gray;
+    display:block;
+}
+
+.tab-switch {
+    display: none;
+}
