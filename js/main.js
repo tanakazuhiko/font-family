@@ -3,10 +3,9 @@
 * copyright 2019 tanakazuhiko
 * powered by d3.js
 */
-var path = "../data/fonts.json";
+var path = "../setting.json";
 var api_url = "https://www.googleapis.com/webfonts/v1/webfonts?key=";
 var css_url = "https://fonts.googleapis.com/css?display=swap&family=";
-var key = "AIzaSyA6-eEkxuV9gyegYhvPjcok-p-fqchrg9c";
 var string1 = "abcdefghijklmnopqrstuvwxyz";
 var string2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var string3 = "1234567890";
@@ -15,22 +14,28 @@ var string5 = "あいうえおかきくけこ";
 var string6 = "アイウエオカキクケコ";
 var string7 = "祇辻飴葛蛸鯖鰯噌庖箸";
 var offset = 50;
-var width = window.innerWidth;
-var height = window.innerHeight;
+var offset_x = 20;
+var start_x = 450;
+var duration_sort = 1000;
+var zoom_from = 0.01;
+var zoom_to = 10000;
+var key;
+var width, height;
 var svg, zoom;
 var x, xAxis, gX, y, yAxis, gY;
 var device, google;
 var dataset = [];
-var g_family, family, g_sample, sample;
+var g_family, family, g_sample, sample, help_msg;
 var e_tab;
+var count_array = [];
 
-// device font
+// api key
 d3.json(path).then(
-    function(device){
+    function(data){
         // google font
-        d3.json(api_url + key).then(
+        d3.json(api_url + data.key).then(
             function(google){
-                init();
+                init(google.items);
                 axis();
                 // dataset = device.concat(google.items);
                 dataset = filter(google.items, "A");
@@ -40,12 +45,14 @@ d3.json(path).then(
                 // tab
                 e_tab.forEach(function(item, index) {
                     item.addEventListener("change", function() {
-                        font_family.remove();
-                        font_sample.remove();
-
-                        dataset = filter(google.items, this.id);
-                        css(dataset);
-                        draw(dataset);
+                        resetted();
+                        if(this.id == "help") {
+                            help(dataset);
+                        } else {
+                            dataset = filter(google.items, this.id);
+                            css(dataset);
+                            draw(dataset);
+                        }
                     });
                 });
             }
@@ -65,29 +72,31 @@ function filter(items, key) {
     return result;
 }
 
-// css
-function css(items) {
-    var list = "";
-    var link = document.createElement("link");
-    var head = document.getElementsByTagName("head")[0];
-    items.filter(function(item, index) {
-        if(index > 0) list += "|";
-        list += item.family.replace(/ /g, "+");
-    })
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("type", "text/css");
-    link.setAttribute("href", css_url + list);
-    head.appendChild(link);
-}
-
 // init
-function init() {
+function init(items) {
     // window
-    width = window.innerWidth - 20;
+    width = window.innerWidth - offset_x;
     height = window.innerHeight;
 
     // element
     e_tab = document.querySelectorAll(".tab-switch");
+
+    // count
+    items.forEach(function(v, i) {
+        var family = v.family.slice(0, 1);
+        if(!count_array[family]) {
+            count_array[family] = 1;
+        } else {
+            count_array[family]++;
+        }
+    });
+
+    var alphabet = string2.split("");
+    for(var i = 0; i < alphabet.length; i++) {
+        var elm = document.getElementById(alphabet[i]);
+        var count = !count_array[alphabet[i]] ? 0 : count_array[alphabet[i]];
+        elm.nextElementSibling.innerHTML = alphabet[i] + "<span>(" + count + ")</span>";
+    }
 
     // svg
     svg = d3
@@ -101,15 +110,10 @@ function init() {
     // zoom
     zoom = d3
     .zoom()
-    .scaleExtent([0.01, 10000])
+    .scaleExtent([zoom_from, zoom_to])
     .on("zoom", zoomed);
 
     svg.call(zoom);
-
-    // reset
-    reset = d3
-    .select("#resetButton")
-    .on("click", resetted);
 }
 
 // axis
@@ -141,6 +145,21 @@ function axis() {
     gY = svg.append("g").call(yAxis);
 }
 
+// css
+function css(items) {
+    var list = "";
+    var link = document.createElement("link");
+    var head = document.getElementsByTagName("head")[0];
+    items.filter(function(item, index) {
+        if(index > 0) list += "|";
+        list += item.family.replace(/ /g, "+");
+    })
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", css_url + list);
+    head.appendChild(link);
+}
+
 // draw
 function draw(dataset) {
     // group
@@ -160,7 +179,7 @@ function draw(dataset) {
     .append("text")
     .attr("class", "family")
     .style("font-family", function(d) { return d.family; })
-    .attr("x", function(d) { return 450; })
+    .attr("x", function(d) { return start_x; })
     .attr("y", function(d, i) { return (i+1) * offset; })
     .text(function(d) {
         var tmp = d.family;
@@ -182,7 +201,7 @@ function draw(dataset) {
     .append("text")
     .attr("class", "sample")
     .style("font-family", function(d) { return d.family; })
-    .attr("x", function(d) { return 500; })
+    .attr("x", function(d) { return start_x + offset; })
     .attr("y", function(d, i) { return (i+1) * offset; })
     .text(function(d) { return string2 + " " + string1 + " " + string3; });
 }
@@ -194,12 +213,59 @@ function zoomed() {
     svg.selectAll(".type").attr("transform", d3.event.transform);
     svg.selectAll(".family").attr("transform", d3.event.transform);
     svg.selectAll(".sample").attr("transform", d3.event.transform);
+    svg.selectAll(".help").attr("transform", d3.event.transform);
 }
 
 // reset
 function resetted() {
     svg
     .transition()
-    .duration(750)
-    .call(zoom.transform, d3.zoomIdentity);
+    .duration(duration_sort)
+    .call(
+        zoom.transform,
+        d3.zoomIdentity
+    );
+    // remove
+    font_family.remove();
+    font_sample.remove();
+    if(help_msg) help_msg.remove();
+}
+
+// help
+function help(dataset) {
+    var random = Math.floor(Math.random() * dataset.length);
+
+    var textArray = [
+        "[操作方法]",
+        "ドラッグ：位置移動",
+        "ダブルクリック：ズーム・イン",
+        "シフト＋ダブルクリック：ズーム・アウト",
+        "ホイール：ズーム・イン／アウト",
+        "",
+        "[usage]",
+        "drag: move time",
+        "double click: zoom in",
+        "shift + double click: zoom out",
+        "scroll: zoom in/out",
+        "",
+        "font family showcase with zoom and pan",
+        "designed and developed by tanakazuhiko, 2019",
+        "powered by d3.js",
+        "",
+        "[font-family: " + dataset[random].family + "]"
+    ];
+
+    help_msg = svg
+    .append("text")
+    .attr("class","help")
+    .attr("text-anchor","start")
+    .attr("transform", "translate(100, 100)")
+    .selectAll("tspan")
+    .data(textArray)
+    .enter()
+    .append("tspan")
+    .style("font-family", dataset[random].family)
+    .attr("x", 100)
+    .attr("y", (d, i) => `${i + (i+3) * 0.5}em`)
+    .text(d => d );
 }
