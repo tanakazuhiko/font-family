@@ -243,7 +243,7 @@ function help(dataset) {
         "ホイール：ズーム・イン／アウト",
         "",
         "[usage]",
-        "drag: move time",
+        "drag: move",
         "double click: zoom in",
         "shift + double click: zoom out",
         "scroll: zoom in/out",
