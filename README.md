@@ -6,7 +6,7 @@
 http://font.gftd.me/index.html
 
 ### usage
-- drag: move time
+- drag: move
 - scroll: zoom in/out
 - double click: zoom in
 - shift + double click: zoom out
