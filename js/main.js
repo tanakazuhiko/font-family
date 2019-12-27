@@ -248,7 +248,7 @@ function help(dataset) {
         "shift + double click: zoom out",
         "scroll: zoom in/out",
         "",
-        "font family showcase with zoom and pan",
+        "HOMAGE TO A TYPEFACE",
         "designed and developed by tanakazuhiko, 2019",
         "powered by d3.js",
         "",
