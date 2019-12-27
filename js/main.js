@@ -251,6 +251,7 @@ function help(dataset) {
         "HOMAGE TO A TYPEFACE",
         "designed and developed by tanakazuhiko, 2019",
         "powered by d3.js",
+        "github: https://github.com/tanakazuhiko/font-family",
         "",
         "[font-family: " + dataset[random].family + "]"
     ];
