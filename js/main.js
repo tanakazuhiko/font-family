@@ -248,11 +248,11 @@ function help(dataset) {
         "shift + double click: zoom out",
         "scroll: zoom in/out",
         "",
-        "HOMAGE TO A TYPEFACE",
+        "[HOMAGE TO A TYPEFACE]",
         "designed and developed by tanakazuhiko, 2019",
         "powered by d3.js",
-        "github: https://github.com/tanakazuhiko/font-family",
         "",
+        "[github: https://github.com/tanakazuhiko/font-family]",
         "[font-family: " + dataset[random].family + "]"
     ];
 
