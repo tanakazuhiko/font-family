@@ -10,7 +10,7 @@ body {
 
 g.tick line {
     stroke: #c5bfbf;
-    stroke-width:0.5;
+    stroke-width: 0.5;
 }
 
 g.tick text {
@@ -23,7 +23,6 @@ g.tick text {
     top: 0;
     left: 47px;
     background-color: #FFFFFF;
-    /* transition: all 100ms cubic-bezier(0.420, 0.000, 0.580, 1.000); */
 }
 
 path.domain {
@@ -35,7 +34,6 @@ path.domain {
     font-size: 60pt;
     fill: #2047c2;
     text-anchor: end;
-    cursor: default;
 }
 
 .g_family {
@@ -47,11 +45,13 @@ path.domain {
     font-size: 32pt;
     fill: #413939;
     text-anchor: end;
+    cursor: pointer;
 }
 
 .sample {
     font-size: 32pt;
     fill: #222;
+    cursor: pointer;
 }
 
 .grabbable {
@@ -90,7 +90,7 @@ path.domain {
     order: -1;
     position: relative;
     cursor: pointer;
-    float:left;
+    float: left;
     border-left: 6px solid #80929B;
     z-index: 2;
 }
@@ -105,7 +105,7 @@ path.domain {
 }
 
 .tab-content {
-    display:none;
+    display: none;
 }
 
 .tab-switch:checked+.tab-label {
@@ -123,24 +123,96 @@ path.domain {
     height: 100%;
     padding: 15px;
     border-left: 1px solid Gray;
-    display:block;
+    display: block;
 }
 
 .tab-switch {
     display: none;
 }
 
-#fadeLayer {
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height:100%;
-    background-color:#000000;
-    opacity: 0.9;
-    visibility:hidden;
-    z-index:1;
-    /* transition: all 1s; */
+#fade_layer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.8;
+    visibility: hidden;
+    z-index: 1;
+    transition: all 0.3s;
+}
+
+#msg {
+    position: absolute;
+    visibility: hidden;
+    top: 50px;
+    left: 12%;
+    width: 76%;
+    background-color: #eae9ea;
+    color: darkslategrey;
+    opacity: 1;
+    transition: all 0.2s;
+    z-index: 9;
+    padding: 30px 20px 40px 20px;
+    line-height: 0.84;
+    word-wrap: break-word;
+    cursor: default;
+    font-size: 40px;
+}
+
+#msg div {
+    font-size: 40px;
+    width: 100%;
+    border-bottom: solid 1px darkslategrey;
+    line-height: 0.5;
+    padding-bottom: 8px;
+}
+
+#msg span {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+#msg span.head {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#msg span.small {
+    font-size: 14px;
+    line-height: 0.2;
+}
+
+#msg span br{
+    line-height: initial;
+}
+
+#msg div.src {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 12px 10px;
+    border: none;
+    background: #2F3437;
+    color: antiquewhite;
+    width: 90%;
+    margin-top: 10px;
+}
+
+#msg .small {
+    font-weight: 100;
+}
+
+#msg .normal {
+    font-weight: 400;
+}
+
+#msg .bold {
+    font-weight: 900;
+}
+
+#msg .italic {
+    font-style: italic;
 }
 
 .help {
