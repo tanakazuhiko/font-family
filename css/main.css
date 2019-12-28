@@ -95,6 +95,10 @@ path.domain {
     z-index: 2;
 }
 
+.tab-label:hover {
+    background: #edebeb;    
+}
+
 .tab-label span {
     position: absolute;
     right: 2px;
