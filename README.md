@@ -10,9 +10,11 @@ http://font.gftd.me/index.html
 - scroll: zoom in/out
 - double click: zoom in
 - shift + double click: zoom out
+- click: show font variation
 
 ### dependency
 - [d3.v5.js](https://d3js.org)
+- [google fonts](https://developers.google.com/fonts)
 
 ### licence
 [MIT License](https://spdx.org/licenses/MIT)
