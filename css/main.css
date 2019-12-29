@@ -96,7 +96,7 @@ path.domain {
 }
 
 .tab-label:hover {
-    background: #edebeb;    
+    background: #edebeb;
 }
 
 .tab-label span {
@@ -150,7 +150,7 @@ path.domain {
 #msg {
     position: absolute;
     visibility: hidden;
-    top: 50px;
+    top: 30px;
     left: 12%;
     width: 76%;
     background-color: #eae9ea;
@@ -158,19 +158,16 @@ path.domain {
     opacity: 1;
     transition: all 0.2s;
     z-index: 9;
-    padding: 30px 20px 40px 20px;
+    padding: 10px 20px 40px 20px;
     line-height: 0.84;
     word-wrap: break-word;
     cursor: default;
     font-size: 40px;
 }
 
-#msg div {
-    font-size: 40px;
-    width: 100%;
+#msg div.head {
+    padding: 0px;
     border-bottom: solid 1px darkslategrey;
-    line-height: 0.5;
-    padding-bottom: 8px;
 }
 
 #msg span {
@@ -199,8 +196,8 @@ path.domain {
     border: none;
     background: #2F3437;
     color: antiquewhite;
-    width: 90%;
-    margin-top: 10px;
+    width: 92%;
+    margin: 10px 10px 0 0;
 }
 
 #msg .small {

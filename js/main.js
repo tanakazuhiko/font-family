@@ -27,6 +27,7 @@ var css_mid = ' { font-family: "';
 var css_end = '"; }';
 var div_start = "<div>";
 var div_end = "</div>";
+var div_head = "<div class='head'>";
 var div_src = "<div class='src'>";
 var span_start = "<span>";
 var span_end = "</span>";
@@ -85,7 +86,7 @@ d3.json(path).then(
                 // reset
                 resetted();
                 // family
-                listenFamily();
+                listenFamily(dataset);
                 // tab
                 e_tab.forEach(function(item, index) {
                     item.addEventListener("change", function() {
@@ -289,29 +290,60 @@ function remove() {
 }
 
 // family
-function listenFamily() {
+function listenFamily(dataset) {
     string = string1 + br + string2 + br + string3;
+    // family
     e_family = document.querySelectorAll(".family");
     e_family.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            setMsg(this.id);
+            showVariations(dataset, this.id);
         });
     });
-
+    // sample
     e_sample = document.querySelectorAll(".sample");
     e_sample.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            setMsg(this.id.replace(pre_c, none));
+            showVariations(dataset, this.id.replace(pre_c, none));
         });
     });
 }
 
-// msg
-function setMsg(family) {
-    var style = style_start + family.replace(/ /g, plus) + style_end;
+// showVariations (swiper)
+function showVariations(dataset, family) {
+    var swiper_wrapper = document.getElementById("swiper-wrapper");
+    dataset.forEach(function(item, index) {
+        showVariation(swiper_wrapper, item.family);
+    });
+    // swiper
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        // grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    e_fade.style.visibility = "visible";
+    e_msg.style.visibility = "visible";
+}
+
+// showVariation
+function showVariation(swiper_wrapper, family) {
+    var div, style, lower, str;
+
+    style = style_start + family.replace(/ /g, plus) + style_end;
     style = style.replace(/</g,'&lt;').replace(/>/,'&gt;');
-    var lower = family.replace(/ /g, none).toLowerCase();
-    var str = div_start + family + div_end;
+    lower = family.replace(/ /g, none).toLowerCase();
+    str = div_head + family + div_end;
     str += span_head + str_normal + span_end + br;
     str += span_normal + string + span_end + br;
     str += span_head + str_bold + span_end + br;
@@ -323,10 +355,11 @@ function setMsg(family) {
     str += div_src + style + br;
     str += css_start + lower + css_mid + family + css_end + div_end;
 
-    e_fade.style.visibility = "visible";
-    e_msg.style.visibility = "visible";
-    e_msg.style.fontFamily = quote + family + quote;
-    e_msg.innerHTML = str;
+    div = document.createElement("div");
+    div.setAttribute("class", "swiper-slide");
+    div.style.fontFamily = quote + family + quote;
+    div.innerHTML = str;
+    swiper_wrapper.appendChild(div);
 }
 
 // filter

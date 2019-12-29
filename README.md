@@ -13,8 +13,9 @@ http://font.gftd.me/index.html
 - click: show font variation
 
 ### dependency
-- [d3.v5.js](https://d3js.org)
-- [google fonts](https://developers.google.com/fonts)
+- [d3.v5.js](https://d3js.org/)
+- [swiper.v5.2.1.js](https://swiperjs.com/)
+- [google fonts](https://developers.google.com/fonts/)
 
 ### licence
-[MIT License](https://spdx.org/licenses/MIT)
+[MIT License](https://spdx.org/licenses/MIT/)
