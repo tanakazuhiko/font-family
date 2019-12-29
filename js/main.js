@@ -100,7 +100,7 @@ d3.json(path).then(
                             draw(dataset);
                             initZoom();
                             resetted();
-                            listenFamily();
+                            listenFamily(dataset);
                         }
                     });
                 });
@@ -232,6 +232,7 @@ function draw(dataset) {
     .enter()
     .append("text")
     .attr("class", "family")
+    .attr("data-no", function(d, i) { return i; })
     .attr("id", function(d) { return d.family; })
     .style("font-family", function(d) { return quote + d.family + quote; })
     .attr("x", function(d) { return start_x; })
@@ -255,6 +256,7 @@ function draw(dataset) {
     .enter()
     .append("text")
     .attr("class", "sample")
+    .attr("data-no", function(d, i) { return i; })
     .attr("id", function(d) { return pre_c + d.family; })
     .style("font-family", function(d) { return quote + d.family + quote; })
     .attr("x", function(d) { return start_x + offset; })
@@ -296,30 +298,39 @@ function listenFamily(dataset) {
     e_family = document.querySelectorAll(".family");
     e_family.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            showVariations(dataset, this.id);
+            showVariations(dataset, this.id, this.getAttribute('data-no'));
         });
     });
     // sample
     e_sample = document.querySelectorAll(".sample");
     e_sample.forEach(function(item, index) {
         item.addEventListener("click", function() {
-            showVariations(dataset, this.id.replace(pre_c, none));
+            showVariations(dataset, this.id.replace(pre_c, none), this.getAttribute('data-no'));
         });
     });
 }
 
 // showVariations (swiper)
-function showVariations(dataset, family) {
+function showVariations(dataset, family, no) {
     var swiper_wrapper = document.getElementById("swiper-wrapper");
+    // init
+    while(swiper_wrapper.lastChild){
+        swiper_wrapper.removeChild(swiper_wrapper.lastChild);
+    }
+    // showVariation
     dataset.forEach(function(item, index) {
         showVariation(swiper_wrapper, item.family);
     });
     // swiper
     var swiper = new Swiper('.swiper-container', {
+        speed: 1000,
         effect: 'coverflow',
         // grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
+        SimulateTouch: false,
+        allowTouchMove: false,
+        loop: true,
         coverflowEffect: {
             rotate: 50,
             stretch: 0,
@@ -334,6 +345,7 @@ function showVariations(dataset, family) {
     });
     e_fade.style.visibility = "visible";
     e_msg.style.visibility = "visible";
+    swiper.slideTo(no);
 }
 
 // showVariation

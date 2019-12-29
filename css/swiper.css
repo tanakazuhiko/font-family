@@ -546,6 +546,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-button-prev, .swiper-button-next {
-    top: 36%;
-    --swiper-theme-color: #929497b5;
+    top: 38%;
+    --swiper-theme-color: white;
+    opacity: 0.5;
 }
