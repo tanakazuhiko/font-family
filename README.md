@@ -13,7 +13,7 @@ http://font.gftd.me/index.html
 - click: show font variation
 
 ### dependency
-- [d3.v5.js](https://d3js.org/)
+- [d3.v5.14.2.js](https://d3js.org/)
 - [swiper.v5.2.1.js](https://swiperjs.com/)
 - [google fonts](https://developers.google.com/fonts/)
 
