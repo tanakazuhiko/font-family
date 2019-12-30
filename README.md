@@ -1,6 +1,6 @@
 ## D3.js Font-family showcase with zoom and pan
 
-<img src="http://font.gftd.me/screenshot.png">
+<img src="http://font.gftd.me/screenshot.png?20191230">
 
 ### website
 http://font.gftd.me/index.html
