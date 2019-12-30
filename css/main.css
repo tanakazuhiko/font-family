@@ -169,6 +169,7 @@ path.domain {
 #msg div.head {
     padding: 0px;
     border-bottom: solid 1px darkslategrey;
+    width: 94%;
 }
 
 #msg span {
@@ -182,7 +183,7 @@ path.domain {
 }
 
 #msg span.small {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 0.2;
 }
 

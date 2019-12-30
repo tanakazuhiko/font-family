@@ -29,16 +29,17 @@ var div_start = "<div>";
 var div_end = "</div>";
 var div_head = "<div class='head'>";
 var div_src = "<div class='src'>";
+var span_small = " small";
 var span_start = "<span>";
 var span_end = "</span>";
+var span_class_end = "'>";
 var pre_start = "<pre>";
 var pre_end = "</pre>";
 var span_head = "<span class='head'>";
-var span_small = "<span class='small'>";
-var span_normal = "<span class='normal'>";
-var span_bold = "<span class='bold'>";
-var span_italic = "<span class='italic'>";
-var span_bold_italic = "<span class='bold italic'>";
+var span_normal = "<span class='normal";
+var span_bold = "<span class='bold";
+var span_italic = "<span class='italic";
+var span_bold_italic = "<span class='bold italic";
 var str_small = "[font-weight: small]"
 var str_normal = "[font-weight: normal]"
 var str_bold = "[font-weight: bold]"
@@ -55,6 +56,8 @@ var zoom_to = 10000;
 var weight_light = 100;
 var weight_normal = 400;
 var weight_bold = 900;
+var font_small = "20px";
+var font_normal = "34px";
 var key;
 var width, height;
 var svg, zoom;
@@ -64,6 +67,37 @@ var dataset = [];
 var g_family, family, g_sample, sample, help_msg;
 var e_tab, e_family, e_sample, e_fade, e_msg;
 var count_array = [];
+var big_font_array = [
+    "Asset",
+    "Beth Ellen",
+    "BioRhyme Expanded",
+    "Diplomata",
+    "Diplomata SC",
+    "Frijole",
+    "Geostar",
+    "Geostar Fill",
+    "Goblin One",
+    "Gravitas One",
+    "Great Vibes",
+    "Lexend Peta",
+    "Lexend Tera",
+    "Lexend Zetta",
+    "Libre Barcode 39 Extended",
+    "Libre Barcode 39 Extended Text",
+    "Meddon",
+    "Meie Script",
+    "Michroma",
+    "Monsieur La Doulaise",
+    "Nosifer",
+    "Parisienne",
+    "Press Start 2P",
+    "Rock Salt",
+    "Sarina",
+    "Sonsie One",
+    "Stalinist One",
+    "Vast Shadow",
+    "Vibur",
+];
 
 // api key
 d3.json(path).then(
@@ -322,12 +356,12 @@ function showVariations(dataset, family, no) {
         showVariation(swiper_wrapper, item.family);
     });
     // swiper
-    var swiper = new Swiper('.swiper-container', {
+    var swiper = new Swiper(".swiper-container", {
         speed: 1000,
-        effect: 'coverflow',
+        effect: "coverflow",
         // grabCursor: true,
         centeredSlides: true,
-        slidesPerView: 'auto',
+        slidesPerView: "auto",
         SimulateTouch: false,
         allowTouchMove: false,
         loop: true,
@@ -339,8 +373,8 @@ function showVariations(dataset, family, no) {
             slideShadows : true,
         },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
     });
     e_fade.style.visibility = "visible";
@@ -350,23 +384,25 @@ function showVariations(dataset, family, no) {
 
 // showVariation
 function showVariation(swiper_wrapper, family) {
-    var div, style, lower, str;
-
+    var div, style, lower, str, font_class;
+    // font size
+    font_class = big_font_array.indexOf(family) >= 0 ? span_small : none;
+    // var
     style = style_start + family.replace(/ /g, plus) + style_end;
     style = style.replace(/</g,'&lt;').replace(/>/,'&gt;');
     lower = family.replace(/ /g, none).toLowerCase();
     str = div_head + family + div_end;
     str += span_head + str_normal + span_end + br;
-    str += span_normal + string + span_end + br;
+    str += span_normal + font_class + span_class_end + string + span_end + br;
     str += span_head + str_bold + span_end + br;
-    str += span_bold + string + span_end + br;
+    str += span_bold + font_class + span_class_end + string + span_end + br;
     str += span_head + str_italic + span_end + br;
-    str += span_italic + string + span_end + br;
+    str += span_italic + font_class + span_class_end + string + span_end + br;
     str += span_head + str_bold_italic + span_end + br;
-    str += span_bold_italic + string + span_end + br;
+    str += span_bold_italic + font_class + span_class_end + string + span_end + br;
     str += div_src + style + br;
     str += css_start + lower + css_mid + family + css_end + div_end;
-
+    // element
     div = document.createElement("div");
     div.setAttribute("class", "swiper-slide");
     div.style.fontFamily = quote + family + quote;
