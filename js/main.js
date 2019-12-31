@@ -70,6 +70,7 @@ var count_array = [];
 var big_font_array = [
     "Asset",
     "Beth Ellen",
+    "Bilbo Swash Caps",
     "BioRhyme Expanded",
     "Diplomata",
     "Diplomata SC",
@@ -79,6 +80,7 @@ var big_font_array = [
     "Goblin One",
     "Gravitas One",
     "Great Vibes",
+    "Holtwood One SC",
     "Lexend Peta",
     "Lexend Tera",
     "Lexend Zetta",
@@ -94,6 +96,7 @@ var big_font_array = [
     "Rock Salt",
     "Sacramento",
     "Sarina",
+    "Seymour One",
     "Sonsie One",
     "Stalinist One",
     "Vast Shadow",
